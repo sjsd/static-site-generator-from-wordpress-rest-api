@@ -1,7 +1,7 @@
 {
-  "name": "metalsmith-netlify-boilerplate",
-  "version": "1.0.0",
-  "description": "A setup to get you going on Netlify with a Metalsmith static site.",
+  "name": "static-site-generator-from-wordpress-rest-api",
+  "version": "0.0.1",
+  "description": "A setup to build static site from Wordpress REST API.",
   "main": "build.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,18 +14,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andreasvirkus/metalsmith-boilerplate.git"
+    "url": "git+https://github.com/sjsd/static-site-generator-from-wordpress-rest-api.git"
   },
   "keywords": [
     "metalsmith",
     "base",
     "template",
-    "netlify"
+    "wordpress"
   ],
-  "author": "https://github.com/andreasvirkus",
+  "author": "https://github.com/sjsd/",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/andreasvirkus/metalsmith-boilerplate/issues"
+    "url": "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/issues"
   },
   "dependencies": {
     "autoprefixer": "^7.1.1",
