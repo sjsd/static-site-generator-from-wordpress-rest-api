@@ -1,7 +1,7 @@
 # Static Site Generator
-## Using Wordpress REST API (and some other stuff)
+Based on [Wordpress REST API](http://v2.wp-api.org/), [Node](https://nodejs.org/en/), and [Metalsmith](http://www.metalsmith.io/).
 
-A setup to create a simple and very fast blog / static site based on a Wordpress blog.
+A setup to create a simple and very fast blog / static site based on a Wordpress blog. Some [background information at the blog](https://staticsitegenerator.wordpress.com).
 
 ## Getting startet
 - Add URL to the `build.js`. First line.
