@@ -1,3 +1,4 @@
+const wordpressURL = 'XXX';
 const metalsmith = require('metalsmith');
 const markdown = require('metalsmith-markdown');
 const collections = require('metalsmith-collections');
@@ -68,7 +69,7 @@ metalsmith(__dirname)
     })
     .clean(true)
     .use(remote({
-        url: 'https://public-api.wordpress.com/wp/v2/sites/XXX/posts', // Insert URL to Wordpress-blog.
+        url: 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/posts', // Insert URL to Wordpress-blog.
         "transformOpts": formatPost
     }))
     .use(collections({
