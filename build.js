@@ -1,4 +1,5 @@
-const wordpressURL = 'XXX';
+const wordpressURL = 'staticsitegenerator.wordpress.com';
+const sitemapHostname = 'https://www.example.com/';
 const metalsmith = require('metalsmith');
 const markdown = require('metalsmith-markdown');
 const collections = require('metalsmith-collections');
@@ -96,7 +97,7 @@ metalsmith(__dirname)
         partials: 'layouts/partials'
     }))
     .use(sitemap({
-        hostname: "http://helgejohnsen.com/"
+        hostname: sitemapHostname
     }))
     .use(asset({
         "src": "assets",
