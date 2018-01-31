@@ -59,3 +59,6 @@ typings/
 
 # Build
 build/
+
+# Sublime
+.sublime-gulp.cache
