@@ -2,12 +2,14 @@
 
 const gulp = require('gulp'); // Initial gulp
 const sass = require('gulp-sass'); // Build SASS
+const babel = require('gulp-babel'); // Babel for JS
 const del = require('del'); // To clean / delete build-folder
 
 // Folders
 const config = {
 	assetsPath: './assets',
 	sassPath: './assets/sass',
+	javascriptPath: './assets/javascript',
 	nodePath: './node_modules',
 	buildPath: './build'
 }
@@ -18,21 +20,32 @@ function defaultTask(done) {
 
 // Delete folder
 gulp.task('clean', function(done, path = config.buildPath) {
-	del([path]);
-	console.log('Done cleaning: '+path);
-	done();
+	del([path]).then(paths => {
+		done();
+	});
 });
 
 // Build CSS from SASS
 gulp.task('sass', function (done) {
 	gulp.src(config.sassPath+'/**/*.scss')
-		.pipe(sass().on('error', sass.logError))
+		.pipe(sass({
+			outputStyle: 'compressed'
+		})
+		.on('error', sass.logError))
 		.pipe(gulp.dest(config.buildPath+'/styles'));
-	console.log('Done building CSS from SASS');
 	done();
 });
 
-gulp.task('default', defaultTask);
-// gulp.task('clean-build', css);
+// Build javascript
+gulp.task('javascript', function(done) {
+	gulp.src(config.javascriptPath +'/main.js')
+		.pipe(babel({
+			presets: ['env']
+		}))
+		.pipe(gulp.dest(config.buildPath + '/javascript'));
+	done();
+});
 
-gulp.task('clean-build', gulp.series('clean', 'sass'));
+// Task in series
+gulp.task('default', defaultTask);
+gulp.task('clean-build', gulp.series('clean', 'sass', 'javascript'));
