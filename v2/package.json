@@ -1,6 +1,6 @@
 {
   "name": "static-site-generator-from-wordpress-rest-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A setup to build static site from Wordpress REST API",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,6 @@
   "homepage": "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api#readme",
   "dependencies": {
     "del": "^3.0.0",
-    "file-system": "^2.2.2",
     "gulp-sass": "^3.1.0"
   },
   "devDependencies": {
