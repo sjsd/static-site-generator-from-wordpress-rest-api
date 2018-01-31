@@ -1,8 +1,8 @@
 'use strict';
-
 const gulp = require('gulp'); // Initial gulp
 const sass = require('gulp-sass'); // Build SASS
 const babel = require('gulp-babel'); // Babel for JS
+const plugins = require('gulp-load-plugins')(); // To handle splits of gulpfile.js
 const del = require('del'); // To clean / delete build-folder
 
 // Folders
@@ -12,6 +12,10 @@ const config = {
 	javascriptPath: './assets/javascript',
 	nodePath: './node_modules',
 	buildPath: './build'
+}
+
+function getTask(task) {
+    return require('./gulp-tasks/' + task)(gulp, plugins);
 }
 
 function defaultTask(done) {
@@ -25,26 +29,13 @@ gulp.task('clean', function(done, path = config.buildPath) {
 	});
 });
 
-// Build CSS from SASS
-gulp.task('sass', function (done) {
-	gulp.src(config.sassPath+'/**/*.scss')
-		.pipe(sass({
-			outputStyle: 'compressed'
-		})
-		.on('error', sass.logError))
-		.pipe(gulp.dest(config.buildPath+'/styles'));
-	done();
-});
+// Build CSS
+gulp.task('sass', getTask('sass'));
 
 // Build javascript
-gulp.task('javascript', function(done) {
-	gulp.src(config.javascriptPath +'/main.js')
-		.pipe(babel({
-			presets: ['env']
-		}))
-		.pipe(gulp.dest(config.buildPath + '/javascript'));
-	done();
-});
+gulp.task('javascript', getTask('javascript'));
+
+gulp.task('html', getTask('metalsmith'));
 
 // Task in series
 gulp.task('default', defaultTask);
