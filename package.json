@@ -23,7 +23,7 @@
     "wordpress"
   ],
   "author": "https://github.com/sjsd/",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/issues"
   },
