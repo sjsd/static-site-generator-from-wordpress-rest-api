@@ -1,7 +1,7 @@
 // Build JS
 module.exports = function (gulp, plugins) {
 	return function (done) {
-	gulp.src('./assets/javascript/main.js')
+	gulp.src('./src/javascript/*.js')
 		.pipe(plugins.babel({
 			presets: ['env']
 		}))

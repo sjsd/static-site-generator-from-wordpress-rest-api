@@ -1,52 +1,50 @@
 {
   "name": "static-site-generator-from-wordpress-rest-api",
-  "version": "0.0.1",
-  "description": "A setup to build static site from Wordpress REST API.",
-  "main": "build.js",
+  "version": "0.0.3",
+  "description": "A setup to build static site from Wordpress REST API",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node . && npm run",
-    "postbuild": "npm run copy-assets",
-    "copy-assets": "copy -r assets build/",
-    "minify": "npm run minify:js && npm run minify:css",
-    "minify:js": "uglifyjs ./build/js/*.js -c -m -o ./build/js/script.min.js",
-    "minify:css": "cleancss --level 2 -o ./build/css/styles.min.css ./build/css/*.css && postcss ./build/css/styles.min.css --use autoprefixer -o ./build/css/styles.min.css"
+    "start": "node . && npm run"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sjsd/static-site-generator-from-wordpress-rest-api.git"
   },
   "keywords": [
-    "metalsmith",
-    "base",
-    "template",
-    "wordpress"
+    "wordpress",
+    "api",
+    "rest",
+    "json",
+    "metalsmith"
   ],
-  "author": "https://github.com/sjsd/",
+  "author": "Helge Johnsen",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/issues"
   },
+  "homepage": "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api#readme",
   "dependencies": {
-    "autoprefixer": "^7.1.1",
-    "clean-css-cli": "^4.1.3",
-    "handlebars": "^4.0.8",
-    "metalsmith": "^2.3.0",
-    "metalsmith-autoprefixer": "^1.1.1",
-    "metalsmith-collections": "^0.9.0",
-    "metalsmith-layouts": "^1.8.1",
-    "metalsmith-markdown": "^0.2.1",
-    "metalsmith-navigation": "^0.2.9",
-    "metalsmith-permalinks": "^0.5.0",
-    "metalsmith-sitemap": "^1.2.0",
-    "moment": "^2.18.1",
-    "postcss-cli": "^4.1.1",
-    "uglify-js": "^3.3.7"
+    "del": "^3.0.0",
+    "gulp-sass": "^3.1.0"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-load-plugins": "^1.5.0",
+    "handlebars": "^4.0.11",
     "he": "^1.1.1",
+    "metalsmith": "^2.3.0",
+    "metalsmith-collections": "^0.9.0",
+    "metalsmith-layouts": "^2.1.0",
+    "metalsmith-markdown": "^0.2.2",
+    "metalsmith-permalinks": "^0.5.0",
     "metalsmith-remote-json-to-files": "^1.0.0",
     "metalsmith-rootpath": "^1.0.4",
-    "metalsmith-static": "0.0.5"
+    "metalsmith-sitemap": "^1.2.0",
+    "metalsmith-static": "0.0.5",
+    "moment": "^2.20.1"
   }
 }

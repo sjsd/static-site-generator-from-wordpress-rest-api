@@ -6,11 +6,11 @@ const collections = require('metalsmith-collections');
 const permalinks = require('metalsmith-permalinks');
 const layouts = require('metalsmith-layouts');
 const sitemap = require('metalsmith-sitemap');
-const Handlebars = require('handlebars');
-const moment = require('moment');
 const remote = require('metalsmith-remote-json-to-files');
 const asset = require('metalsmith-static');
 const rootPath = require('metalsmith-rootpath');
+const Handlebars = require('handlebars');
+const moment = require('moment');
 const he = require('he');
 
 Handlebars.registerHelper('is', function (value, test, options) {
@@ -58,52 +58,51 @@ function formatPost(json) {
     }, {})
 }
 
-metalsmith(__dirname)
-    .metadata({
-        site: {
-            name: 'Static Site Generator',
-            description: "Welcome to my new static generated blog. All content is hosted on Wordpress.",
-            generatorname: "Metalsmith",
-            generatorurl: "http://metalsmith.io/",
-            generatortitle: "Check out Metalsmith!"
-        }
-    })
-    .clean(true)
-    .use(remote({
-        url: 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/posts', // Insert URL to Wordpress-blog.
-        "transformOpts": formatPost
-    }))
-    .use(collections({
-        posts: {
-            pattern: 'posts/*.md',
-            sortBy: 'date',
-            reverse: false
-        },
-        pages: {
-            pattern: '*.md',
-            sortBy: 'menu-order'
-        },
-        blogs: {
-            sortBy: 'date',
-            reverse: true
-        }
-    }))
-    .use(markdown())
-    .use(permalinks())
-    .use(layouts({
-        engine: 'handlebars',
-        directory: 'layouts',
-        default: 'default.hbs',
-        partials: 'layouts/partials'
-    }))
-    .use(sitemap({
-        hostname: sitemapHostname
-    }))
-    .use(asset({
-        "src": "assets",
-        "dest": "."
-    }))
-    .use(rootPath())
-    .build(function (err) {
-        if (err) throw err;
-    });
+		metalsmith(__dirname)
+		    .metadata({
+		        site: {
+		            name: 'Static Site Generator',
+		            description: "Welcome to my new static generated blog. All content is hosted on Wordpress.",
+		            generatorname: "Metalsmith",
+		            generatorurl: "http://metalsmith.io/",
+		            generatortitle: "Check out Metalsmith!"
+		        }
+		    })
+		    .use(remote({
+		        url: 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/posts', // Insert URL to Wordpress-blog.
+		        "transformOpts": formatPost
+		    }))
+		    .use(collections({
+		        posts: {
+		            pattern: './posts/*.md',
+		            sortBy: 'date',
+		            reverse: false
+		        },
+		        pages: {
+		            pattern: '*.md',
+		            sortBy: 'menu-order'
+		        },
+		        blogs: {
+		            sortBy: 'date',
+		            reverse: true
+		        }
+		    }))
+		    .use(markdown())
+		    .use(permalinks())
+		    .use(layouts({
+		        engine: 'handlebars',
+		        directory: 'layouts',
+		        default: 'default.hbs',
+		        partials: './layouts/partials'
+		    }))
+		    .use(sitemap({
+		        hostname: sitemapHostname
+		    }))
+		    .use(asset({
+		        "src": "./assets",
+		        "dest": "."
+		    }))
+		    .use(rootPath())
+		    .build(function (err) {
+		        if (err) throw err;
+		    });

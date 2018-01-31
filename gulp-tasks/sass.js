@@ -1,11 +1,11 @@
 // Build CSS from SASS
 module.exports = function (gulp, plugins) {
 	return function (done) {
-		gulp.src('./assets/sass/**/*.scss')
+		gulp.src('./src/sass/main.scss')
 			.pipe(plugins.sass({
 				outputStyle: 'compressed'
 			}))
-			.pipe(gulp.dest('./build/styles'));
+			.pipe(gulp.dest('./build/css'));
 			done();
 	};
 };
