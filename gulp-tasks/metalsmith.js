@@ -68,10 +68,11 @@ module.exports = function (gulp, plugins) {
 			.metadata({
 				site: {
 					name: 'Static Site Generator',
-					description: "Welcome to my new static generated blog. All content is hosted on Wordpress.",
+					description: "Welcome to my new static generated blog. This code is a proof of consept to prove that it is possible to use Wordpress as a headless CMS or / and CDN. Visit https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/ for more information.",
 					generatorname: "Metalsmith",
 					generatorurl: "http://metalsmith.io/",
-					generatortitle: "Check out Metalsmith!"
+					generatortitle: "Check out Metalsmith!",
+					gitUrl: "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/"
 				}
 			})
 			.use(remote({

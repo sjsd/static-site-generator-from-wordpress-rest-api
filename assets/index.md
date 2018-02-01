@@ -1,5 +1,5 @@
 ---
 title: Static Site Generator
-layout: default.hbs
+layout: frontpage.hbs
 menu-order: 1
 ---
