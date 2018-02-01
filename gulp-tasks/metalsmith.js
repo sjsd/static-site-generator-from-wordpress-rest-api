@@ -13,6 +13,7 @@ const Handlebars = require('handlebars');
 const moment = require('moment');
 const he = require('he');
 const gulpsmith = require('gulpsmith');
+const discoverPartials = require('metalsmith-discover-partials');
 
 
 Handlebars.registerHelper('is', function (value, test, options) {
@@ -61,7 +62,7 @@ function formatPost(json) {
 }
 module.exports = function (gulp, plugins) {
 	return function (done) {
-		gulp.src("./src/**/*")
+		gulp.src("./assets/**/*")
 		.pipe(
 			gulpsmith()
 			.metadata({
@@ -97,12 +98,15 @@ module.exports = function (gulp, plugins) {
 			.use(sitemap({
 				hostname: sitemapHostname
 			}))
-		    /*.use(layouts({
+			.use(discoverPartials({
+				directory: './src/layouts/partials',
+				pattern: /\.hbs$/
+			}))
+		    .use(layouts({
 		        engine: 'handlebars',
-		        directory: 'layouts',
+		        directory: './src/layouts',
 		        default: 'default.hbs',
-		        partials: './layouts/partials'
-		    }))*/
+		    }))
 		    .use(rootPath())
 		).pipe(gulp.dest("./build"))
 		done();
