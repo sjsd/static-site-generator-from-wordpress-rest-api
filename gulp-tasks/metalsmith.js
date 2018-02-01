@@ -97,16 +97,12 @@ module.exports = function (gulp, plugins) {
 			.use(sitemap({
 				hostname: sitemapHostname
 			}))
-			.use(asset({
-				"src": "./assets",
-				"dest": "."
-			}))
-		    .use(layouts({
+		    /*.use(layouts({
 		        engine: 'handlebars',
 		        directory: 'layouts',
 		        default: 'default.hbs',
 		        partials: './layouts/partials'
-		    }))
+		    }))*/
 		    .use(rootPath())
 		).pipe(gulp.dest("./build"))
 		done();
