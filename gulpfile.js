@@ -130,9 +130,9 @@ gulp.task('html', function(done) {
 	.use(permalinks())
 	.use(layouts({
 		engine: 'handlebars',
-		directory: __dirname+'/layouts',
+		directory: 'src/layouts',
 		default: 'default.hbs',
-		partials: __dirname+'/layouts/partials'
+		partials: 'src/layouts/partials'
 	}))
 	.use(sitemap({
 		hostname: sitemapHostname
