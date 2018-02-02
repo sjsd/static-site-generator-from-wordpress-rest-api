@@ -86,10 +86,6 @@ module.exports = function (gulp, plugins) {
 				pages: {
 					pattern: '*.md',
 					sortBy: 'menu-order'
-				},
-				blogs: {
-					sortBy: 'date',
-					reverse: true
 				}
 			}))
 			.use(markdown())
