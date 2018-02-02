@@ -5,16 +5,14 @@ const markdown = require('metalsmith-markdown');
 const collections = require('metalsmith-collections');
 const permalinks = require('metalsmith-permalinks');
 const layouts = require('metalsmith-layouts');
+const discoverPartials = require('metalsmith-discover-partials');
 const sitemap = require('metalsmith-sitemap');
 const remote = require('metalsmith-remote-json-to-files');
-const asset = require('metalsmith-static');
 const rootPath = require('metalsmith-rootpath');
 const Handlebars = require('handlebars');
 const moment = require('moment');
 const he = require('he');
 const gulpsmith = require('gulpsmith');
-const discoverPartials = require('metalsmith-discover-partials');
-
 
 Handlebars.registerHelper('is', function (value, test, options) {
 	if (value === test) {
