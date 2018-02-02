@@ -1,11 +1,10 @@
 {
   "name": "static-site-generator-from-wordpress-rest-api",
-  "version": "0.0.3",
-  "description": "A setup to build static site from Wordpress REST API",
+  "version": "0.0.4",
+  "description": "A setup to build a static site from Wordpress REST API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node . && npm run"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -48,7 +47,6 @@
     "metalsmith-remote-json-to-files": "^1.0.0",
     "metalsmith-rootpath": "^1.0.4",
     "metalsmith-sitemap": "^1.2.0",
-    "metalsmith-static": "0.0.5",
     "moment": "^2.20.1"
   }
 }
