@@ -2,18 +2,10 @@
 const gulp = require('gulp'); // Initial gulp
 const sass = require('gulp-sass'); // Build SASS
 const babel = require('gulp-babel'); // Babel for JS
-const plugins = require('gulp-load-plugins')(); // To handle splits of gulpfile.js
+const plugins = require('gulp-load-plugins')(); // To handle parts of gulpfile.js
 const del = require('del'); // To clean / delete build-folder
 
-// Folders
-const config = {
-	assetsPath: './assets',
-	sassPath: './assets/sass',
-	javascriptPath: './assets/javascript',
-	nodePath: './node_modules',
-	buildPath: './build'
-}
-
+// Function for shortcut getting partial gulp task from the ./gulp-tasks -folder
 function getTask(task) {
     return require('./gulp-tasks/' + task)(gulp, plugins);
 }
@@ -23,7 +15,7 @@ function defaultTask(done) {
 }
 
 // Delete folder
-gulp.task('clean', function(done, path = config.buildPath) {
+gulp.task('clean', function(done, path = './build') {
 	del([path]).then(paths => {
 		done();
 	});
