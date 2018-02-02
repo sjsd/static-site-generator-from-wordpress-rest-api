@@ -10,6 +10,18 @@ A setup to create a simple and very fast blog / static site based on a Wordpress
 - Run the build `gulp clean-build`
 - We're done! Your site is now in the `./build` directory.
 
+### Some options
+**Where do I set URL to my Wordpress?**
+Open `./gulp-task/metalsmith.js` and change the variable for *wordpressURL*. Like this: `const wordpressURL = 'your-wordpress-blog.wordpress.com'`.
+
+Note: it can be self hosted installation. Then you set something like this *www.your-domain-name.com*
+
+**Are you kidding me? The posts order the wrong way!**
+Yeah, well .. you can change that. Open `./gulp-task/metalsmith.js` and find the options for posts. Change the value true. Like this: `reverse: true`.
+
+**I want my own design**
+Go ahead! Knock your self out! The script use [Metalsmith](http://www.metalsmith.io/) and [Handlebars](handlebarsjs.com). Or you can change the script to use what ever you prefer.
+
 ## Roadmap
 Larger than Google Maps
 
