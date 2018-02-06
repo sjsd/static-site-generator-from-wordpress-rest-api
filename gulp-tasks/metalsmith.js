@@ -56,7 +56,8 @@ function formatPost(json) {
 				excerpt: item.excerpt.rendered,
 				description: item.excerpt.rendered,
 				featuredImage: item.featured_media_url,
-				publishDate: item.date
+				publishDate: item.date,
+				date: item.date
 			}
 		})
 	}, {})
@@ -69,7 +70,7 @@ module.exports = function (gulp, plugins) {
 			.metadata({
 				site: {
 					name: 'Static Site Generator',
-					description: "Welcome to my new static generated blog. This code is a proof of consept to prove that it is possible to use Wordpress as a headless CMS or / and CDN. Visit https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/ for more information.",
+					description: "Welcome to my new static generated blog. This code is a proof of concept to prove that it is possible to use Wordpress as a headless CMS or / and CDN. Visit https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/ for more information.",
 					generatorname: "Metalsmith",
 					generatorurl: "http://metalsmith.io/",
 					generatortitle: "Check out Metalsmith!",
@@ -84,7 +85,7 @@ module.exports = function (gulp, plugins) {
 				posts: {
 					pattern: './post/*.md',
 					sortBy: 'date',
-					reverse: false
+					reverse: true
 				},
 				pages: {
 					pattern: './page/*.md',
