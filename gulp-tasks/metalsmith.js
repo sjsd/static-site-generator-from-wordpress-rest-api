@@ -1,5 +1,6 @@
 const wordpressURL = 'staticsitegenerator.wordpress.com';
 const sitemapHostname = 'https://www.example.com/';
+
 const metalsmith = require('metalsmith');
 const markdown = require('metalsmith-markdown');
 const collections = require('metalsmith-collections');
@@ -9,6 +10,7 @@ const discoverPartials = require('metalsmith-discover-partials');
 const sitemap = require('metalsmith-sitemap');
 const remote = require('metalsmith-remote-json-to-files');
 const rootPath = require('metalsmith-rootpath');
+const dateFormatter = require('metalsmith-date-formatter');
 const Handlebars = require('handlebars');
 const moment = require('moment');
 const he = require('he');
@@ -41,19 +43,20 @@ Handlebars.registerHelper('strip-html', function(context) {
 });
 
 function formatPost(json) {
-	const formatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
 	return json.reduce((prev, item) => {
-		const filename = `posts/${item.slug}.md`
+		const filename = `posts/${item.slug}.md`,
+		const template = 'post.hbs';
+		const collection = 'posts';
 		return Object.assign(prev, {
 			[filename]: {
-				layout: 'post.hbs',
-				collection: 'posts',
-				contents: item.content.rendered,
+				layout: template,
+				collection: collection,
+				content: item.content.rendered,
 				title: item.title.rendered,
 				excerpt: item.excerpt.rendered,
 				description: item.excerpt.rendered,
 				featuredImage: item.featured_media_url,
-				date: item.date
+				publishDate: item.date
 			}
 		})
 	}, {})
@@ -92,6 +95,9 @@ module.exports = function (gulp, plugins) {
 			.use(permalinks())
 			.use(sitemap({
 				hostname: sitemapHostname
+			}))
+			.use(dateFormatter({
+				dates: 'publishDate'
 			}))
 			.use(discoverPartials({
 				directory: './src/layouts/partials',
