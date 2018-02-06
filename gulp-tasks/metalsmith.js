@@ -44,7 +44,7 @@ Handlebars.registerHelper('strip-html', function(context) {
 
 function formatPost(json) {
 	return json.reduce((prev, item) => {
-		const filename = `posts/${item.slug}.md`;
+		const filename = `post/${item.slug}.md`;
 		const template = 'post.hbs';
 		const collection = 'post';
 		return Object.assign(prev, {
@@ -77,7 +77,7 @@ module.exports = function (gulp, plugins) {
 				}
 			})
 			.use(remote({
-				url: 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/posts', // Insert URL to Wordpress-blog.
+				url: 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/posts',
 				"transformOpts": formatPost
 			}))
 			.use(collections({
