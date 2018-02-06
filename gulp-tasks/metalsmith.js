@@ -44,14 +44,14 @@ Handlebars.registerHelper('strip-html', function(context) {
 
 function formatPost(json) {
 	return json.reduce((prev, item) => {
-		const filename = `posts/${item.slug}.md`,
+		const filename = `posts/${item.slug}.md`;
 		const template = 'post.hbs';
-		const collection = 'posts';
+		const collection = 'post';
 		return Object.assign(prev, {
 			[filename]: {
 				layout: template,
 				collection: collection,
-				content: item.content.rendered,
+				contents: item.content.rendered,
 				title: item.title.rendered,
 				excerpt: item.excerpt.rendered,
 				description: item.excerpt.rendered,
@@ -82,12 +82,12 @@ module.exports = function (gulp, plugins) {
 			}))
 			.use(collections({
 				posts: {
-					pattern: './posts/*.md',
+					pattern: './post/*.md',
 					sortBy: 'date',
 					reverse: false
 				},
 				pages: {
-					pattern: '*.md',
+					pattern: './page/*.md',
 					sortBy: 'menu-order'
 				}
 			}))
