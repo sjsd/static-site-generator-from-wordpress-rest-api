@@ -15,6 +15,9 @@ const Handlebars = require('handlebars');
 const moment = require('moment');
 const he = require('he');
 const gulpsmith = require('gulpsmith');
+const jsonfile = require('jsonfile');
+
+const wpApiUrl = 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/';
 
 Handlebars.registerHelper('is', function (value, test, options) {
 	if (value === test) {
@@ -62,6 +65,24 @@ function formatPost(json) {
 		})
 	}, {})
 }
+
+function formatPage(json) {
+	return json.reduce((prev, item) => {
+		const filename = `page/${item.slug}.md`;
+		const template = 'page.hbs';
+		const collection = 'page';
+		return Object.assign(prev, {
+			[filename]: {
+				layout: template,
+				contents: item.content.rendered,
+				title: item.title.rendered,
+				description: item.excerpt.rendered,
+				featuredImage: item.featured_media_url
+			}
+		})
+	}, {})
+}
+
 module.exports = function (gulp, plugins) {
 	return function (done) {
 		gulp.src("./assets/**/*")
@@ -78,14 +99,14 @@ module.exports = function (gulp, plugins) {
 				}
 			})
 			.use(remote({
-				url: 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/posts',
+				url: wpApiUrl+'posts',
 				"transformOpts": formatPost
 			}))
 			.use(collections({
 				posts: {
 					pattern: './post/*.md',
 					sortBy: 'date',
-					reverse: true
+					reverse: false
 				},
 				pages: {
 					pattern: './page/*.md',
@@ -110,7 +131,8 @@ module.exports = function (gulp, plugins) {
 		        default: 'default.hbs',
 		    }))
 		    .use(rootPath())
-		).pipe(gulp.dest("./build"))
+		)
+		.pipe(gulp.dest("./build"))
 		done();
 	};
 };
