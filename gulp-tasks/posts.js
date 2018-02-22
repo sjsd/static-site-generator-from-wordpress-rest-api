@@ -8,7 +8,7 @@ const wpApiUrl = 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/
 
 function writeJsonFilePost(json) {
 	console.log('Write post.json');
-	const file = './post.json';
+	const file = './src/json/post.json';
 	const obj = json;
 
 	jsonfile.writeFile(file, obj, function (err) {

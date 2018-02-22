@@ -1,6 +1,4 @@
-const wordpressURL = 'staticsitegenerator.wordpress.com';
 const sitemapHostname = 'https://www.example.com/';
-
 const metalsmith = require('metalsmith');
 const markdown = require('metalsmith-markdown');
 const collections = require('metalsmith-collections');
@@ -9,15 +7,13 @@ const layouts = require('metalsmith-layouts');
 const discoverPartials = require('metalsmith-discover-partials');
 const sitemap = require('metalsmith-sitemap');
 const remote = require('metalsmith-remote-json-to-files');
+const json_to_files = require('metalsmith-json-to-files');
 const rootPath = require('metalsmith-rootpath');
 const dateFormatter = require('metalsmith-date-formatter');
 const Handlebars = require('handlebars');
 const moment = require('moment');
 const he = require('he');
 const gulpsmith = require('gulpsmith');
-const jsonfile = require('jsonfile');
-
-const wpApiUrl = 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/';
 
 Handlebars.registerHelper('is', function (value, test, options) {
 	if (value === test) {
@@ -98,15 +94,14 @@ module.exports = function (gulp, plugins) {
 					gitUrl: "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/"
 				}
 			})
-			.use(remote({
-				url: wpApiUrl+'posts',
-				"transformOpts": formatPost
+			.use(json_to_files({
+				source_path: './src/json/' 
 			}))
 			.use(collections({
 				posts: {
-					pattern: './post/*.md',
 					sortBy: 'date',
-					reverse: false
+					reverse: false,
+					layouts: 'post.hbs'
 				},
 				pages: {
 					pattern: './page/*.md',
