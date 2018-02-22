@@ -62,3 +62,6 @@ build/
 
 # Sublime
 .sublime-gulp.cache
+
+# Json-files
+src/json/

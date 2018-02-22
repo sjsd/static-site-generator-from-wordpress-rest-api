@@ -79,7 +79,8 @@ function formatPage(json) {
 	}, {})
 }
 
-module.exports = function (gulp, plugins) {
+module.exports = function (gulp, plugins, foo) {
+	console.log(foo);
 	return function (done) {
 		gulp.src("./assets/**/*")
 		.pipe(
