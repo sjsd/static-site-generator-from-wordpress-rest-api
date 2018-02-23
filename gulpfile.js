@@ -30,10 +30,6 @@ gulp.task('javascript', getTask('javascript'));
 // Build javascript
 gulp.task('html', getTask('metalsmith'));
 
-// Get and create local JSONS
-gulp.task('posts', getTask('posts'));
-gulp.task('pages', getTask('pages'));
-
 // Task in series
 gulp.task('default', defaultTask);
 gulp.task('clean-build', gulp.series('clean', 'sass', 'javascript', 'html'));

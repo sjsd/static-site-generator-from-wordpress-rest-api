@@ -15,7 +15,6 @@ const Handlebars = require('handlebars');
 const moment = require('moment');
 const he = require('he');
 const gulpsmith = require('gulpsmith');
-const jsonfile = require('jsonfile');
 
 const wpApiUrl = 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL+'/';
 
