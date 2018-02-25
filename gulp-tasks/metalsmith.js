@@ -1,5 +1,5 @@
 const sitemapHostname = 'https://www.example.com/';
-// const metalsmith = require('metalsmith');
+const metalsmith = require('metalsmith');
 const markdown = require('metalsmith-markdown');
 const collections = require('metalsmith-collections');
 const permalinks = require('metalsmith-permalinks');
@@ -14,8 +14,6 @@ const Handlebars = require('handlebars');
 const moment = require('moment');
 const he = require('he');
 const gulpsmith = require('gulpsmith');
-const metalsmith = require('gulp-metalsmith');
-
 
 Handlebars.registerHelper('is', function (value, test, options) {
 	if (value === test) {
@@ -81,27 +79,56 @@ function formatPage(json) {
 	}, {})
 }
 
-module.exports = function (gulp, plugins) {
+module.exports = function (gulp, plugins, foo) {
+	console.log(foo);
 	return function (done) {
-		gulp.src("./src/json/**")
-			.pipe(metalsmith({
-				root: '.',
-				use: [
-  					json_to_files({
-						"source_path": "./src/json/post.json"
-					}),
-					markdown(),
-					layouts({
-						engine: 'handlebars',
-						directory: './src/layouts',
-						default: 'post.hbs'
-					}),
-				],
-				json: false
-
+		gulp.src("./assets/**/*")
+		.pipe(
+			gulpsmith()
+			.metadata({
+				site: {
+					name: 'Static Site Generator',
+					description: "Welcome to my new static generated blog. This code is a proof of concept to prove that it is possible to use Wordpress as a headless CMS or / and CDN. Visit https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/ for more information.",
+					generatorname: "Metalsmith",
+					generatorurl: "http://metalsmith.io/",
+					generatortitle: "Check out Metalsmith!",
+					gitUrl: "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/"
+				}
+			})
+			.use(json_to_files({
+				source_path: './src/json/' 
 			}))
-			.pipe(gulp.dest('./build'));
-			done();
-
+			.use(collections({
+				posts: {
+					sortBy: 'date',
+					reverse: false,
+					layouts: 'post.hbs'
+				},
+				pages: {
+					pattern: './page/*.md',
+					sortBy: 'menu-order'
+				}
+			}))
+			.use(markdown())
+			.use(permalinks())
+			.use(sitemap({
+				hostname: sitemapHostname
+			}))
+			.use(dateFormatter({
+				dates: 'publishDate'
+			}))
+			.use(discoverPartials({
+				directory: './src/layouts/partials',
+				pattern: /\.hbs$/
+			}))
+		    .use(layouts({
+		        engine: 'handlebars',
+		        directory: './src/layouts',
+		        default: 'default.hbs',
+		    }))
+		    .use(rootPath())
+		)
+		.pipe(gulp.dest("./build"))
+		done();
 	};
 };

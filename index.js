@@ -1,1 +1,1 @@
-console.log('Run `gulp --tasks`');
+console.log('Run `gulp clean-build`');
