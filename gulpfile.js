@@ -36,4 +36,4 @@ gulp.task('local-json-pages', getTask('localjson','pages'));
 
 // Task in series
 gulp.task('default', defaultTask);
-gulp.task('clean-build', gulp.series('clean', 'sass', 'javascript', 'html'));
+gulp.task('build', gulp.series('clean', 'sass', 'javascript', 'html'));
