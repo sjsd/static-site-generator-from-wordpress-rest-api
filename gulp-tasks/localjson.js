@@ -20,9 +20,21 @@ function writeJsonFilePage(json) {
 
 function writeJsonFilePost(json) {
 	const file = './src/json/post.json';
-	const obj = json;
+	const temp = {};
 
-	jsonfile.writeFile(file, obj, function (err) {
+	for (const key of Object.keys(json)) {
+		temp[json[key].slug+'.html'] = {
+			"type": json[key].type,
+			collection: json[key].type,
+			"title": json[key].title.rendered,
+			"order": json[key].id,
+			"layout": json[key].type+'.swig',
+			"contents": json[key].content.rendered,
+			"abstract": json[key].excerpt.rendered
+		};
+	}
+
+	jsonfile.writeFile(file, temp, function (err) {
 		if (err !== null) {
 			console.log('Error writing local JSON-file:')
 			console.error(err);

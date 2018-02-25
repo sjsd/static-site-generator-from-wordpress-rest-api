@@ -11,6 +11,7 @@ function getTask(task,additionalParam) {
 }
 
 function defaultTask(done) {
+	console.log("Run `gulp --tasks` to see available tasks");
 	done();
 }
 
