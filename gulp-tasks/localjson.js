@@ -23,12 +23,12 @@ function writeJsonFilePost(json) {
 	const temp = {};
 
 	for (const key of Object.keys(json)) {
-		temp[json[key].slug+'.html'] = {
+		temp['post/'+json[key].slug+'.html'] = {
 			"type": json[key].type,
 			collection: json[key].type,
 			"title": json[key].title.rendered,
 			"order": json[key].id,
-			"layout": json[key].type+'.swig',
+			"layout": json[key].type+'.hbs',
 			"contents": json[key].content.rendered,
 			"abstract": json[key].excerpt.rendered
 		};
