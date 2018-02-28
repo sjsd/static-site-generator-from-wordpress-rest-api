@@ -45,10 +45,9 @@ module.exports = function (gulp, plugins, foo) {
 					site: {
 						name: 'Static Site Generator',
 						description: "Welcome to my new static generated blog. This code is a proof of concept to prove that it is possible to use Wordpress as a headless CMS or / and CDN. Visit https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/ for more information.",
-						generatorname: "Metalsmith",
-						generatorurl: "http://metalsmith.io/",
-						generatortitle: "Check out Metalsmith!",
-						gitUrl: "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/"
+						gitUrl: "https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/",
+						twitterNick: "@sjsd",
+						siteUrl: "//www.example.com"
 					}
 				},
 				json: true,
