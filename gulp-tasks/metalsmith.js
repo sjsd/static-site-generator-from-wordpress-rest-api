@@ -65,8 +65,7 @@ module.exports = function (gulp, plugins, foo) {
 					collections({
 						post: {
 							sortBy: 'date',
-							reverse: false,
-							layouts: 'post.hbs'
+							reverse: false
 						},
 						pages: {
 							pattern: './page/*.md',
