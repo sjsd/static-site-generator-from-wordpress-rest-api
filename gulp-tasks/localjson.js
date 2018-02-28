@@ -24,20 +24,20 @@ function writeJsonFilePost(json) {
 
 	for (const key of Object.keys(json)) {
 		temp['post/'+json[key].slug+'.html'] = {
-			"id": json[key].id,
-			"date": json[key].date,
-			"modified": json[key].modified,
-			"slug": json[key].slug,
-			"status": json[key].publish,
-			"type": json[key].type,
+			id: json[key].id,
+			date: json[key].date,
+			modified: json[key].modified,
+			slug: json[key].slug,
+			status: json[key].publish,
+			type: json[key].type,
 			collection: json[key].type,
-			"title": json[key].title.rendered,
-			"order": json[key].id,
-			"layout": json[key].type+'.hbs',
-			"contents": json[key].content.rendered,
-			"excerpt": json[key].excerpt.rendered,
-			"featured_media_url": json[key].featured_media_url,
-			"wordpressURL": wordpressURL
+			title: json[key].title.rendered,
+			order: json[key].id,
+			layout: json[key].type+'.hbs',
+			contents: json[key].content.rendered,
+			excerpt: json[key].excerpt.rendered,
+			featured_media_url: json[key].featured_media_url,
+			wordpressURL: wordpressURL
 		};
 	}
 
