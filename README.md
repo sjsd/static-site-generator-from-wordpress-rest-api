@@ -1,4 +1,8 @@
 # Static Site Generator
+## Branch: local-json-handler
+This [branch](https://github.com/sjsd/static-site-generator-from-wordpress-rest-api/tree/local-json-handler) is experimental and not finished
+
+## Description
 Based on [Wordpress REST API](http://v2.wp-api.org/). Build with [Node](https://nodejs.org/en/), [Metalsmith](http://www.metalsmith.io/), [Handlebars](handlebarsjs.com) and [Gulp](https://gulpjs.com/).
 
 A setup to create a simple and very fast blog / static site based on a Wordpress blog. Some [background information at the blog](https://staticsitegenerator.wordpress.com).
