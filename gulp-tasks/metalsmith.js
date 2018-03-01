@@ -39,7 +39,7 @@ Handlebars.registerHelper('strip-html', function(context) {
 
 module.exports = function (gulp, plugins, foo) {
 	return function (done) {
-		gulp.src('src/json/**')
+		gulp.src('./app/assets/**')
 			.pipe(metalsmith({
 				metadata: {
 					site: {
@@ -50,18 +50,8 @@ module.exports = function (gulp, plugins, foo) {
 						siteUrl: "//www.example.com"
 					}
 				},
-				json: true,
+				json: ['./app/json/*.json'],
 				use: [
-					markdown(),
-					permalinks(),
-					discoverPartials({
-						directory: './src/layouts/partials'
-					}),
-					layouts({
-						engine: 'handlebars',
-						directory: './src/layouts',
-						default: 'default.hbs'
-					}),
 					collections({
 						post: {
 							sortBy: 'date',
@@ -71,6 +61,16 @@ module.exports = function (gulp, plugins, foo) {
 							pattern: './page/*.md',
 							sortBy: 'menu-order'
 						}
+					}),
+					markdown(),
+					permalinks(),
+					discoverPartials({
+						directory: './app/layouts/partials'
+					}),
+					layouts({
+						engine: 'handlebars',
+						directory: './app/layouts',
+						default: 'default.hbs'
 					})
 				]
 			})

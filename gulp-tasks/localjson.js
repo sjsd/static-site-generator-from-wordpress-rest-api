@@ -57,7 +57,7 @@ module.exports = function (gulp, plugins, additionalParam) {
 
 		if ((additionalParam !== undefined) || (additionalParam !== 'undefined')) {
 			if (additionalParam === 'pages') {
-				gulp.src("./assets/**/*")
+				gulp.src("./app/assets/**/*")
 				.pipe(
 					gulpsmith()
 					.use(remote({
@@ -69,7 +69,7 @@ module.exports = function (gulp, plugins, additionalParam) {
 			}
 
 			if (additionalParam === 'posts') {
-				gulp.src("./assets/**/*")
+				gulp.src("./app/assets/**/*")
 				.pipe(
 					gulpsmith()
 					.use(remote({
