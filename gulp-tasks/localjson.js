@@ -7,7 +7,7 @@ const jsonfile = require('jsonfile');
 const wpApiUrl = 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL;
 
 function writeJsonFilePage(json) {
-	const file = './src/json/page.json';
+	const file = './app/assets/json/page.json';
 	const obj = json;
 
 	jsonfile.writeFile(file, obj, function (err) {
@@ -19,7 +19,7 @@ function writeJsonFilePage(json) {
 }
 
 function writeJsonFilePost(json) {
-	const file = './src/json/post.json';
+	const file = './app/assets/json/post.json';
 	const temp = {};
 
 	for (const key of Object.keys(json)) {
@@ -57,7 +57,7 @@ module.exports = function (gulp, plugins, additionalParam) {
 
 		if ((additionalParam !== undefined) || (additionalParam !== 'undefined')) {
 			if (additionalParam === 'pages') {
-				gulp.src("./app/assets/**/*")
+				gulp.src(".")
 				.pipe(
 					gulpsmith()
 					.use(remote({
@@ -69,7 +69,7 @@ module.exports = function (gulp, plugins, additionalParam) {
 			}
 
 			if (additionalParam === 'posts') {
-				gulp.src("./app/assets/**/*")
+				gulp.src(".")
 				.pipe(
 					gulpsmith()
 					.use(remote({

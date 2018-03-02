@@ -32,9 +32,9 @@ gulp.task('javascript', getTask('javascript'));
 gulp.task('html', getTask('metalsmith'));
 
 // Get and create local JSONS
-gulp.task('local-json-posts', getTask('localjson','posts'));
-gulp.task('local-json-pages', getTask('localjson','pages'));
+gulp.task('json-posts', getTask('localjson','posts'));
+gulp.task('json-pages', getTask('localjson','pages'));
 
 // Task in series
 gulp.task('default', defaultTask);
-gulp.task('clean-build', gulp.series('clean', 'sass', 'javascript', 'html'));
+gulp.task('build', gulp.series('clean', 'sass', 'javascript', 'html'));

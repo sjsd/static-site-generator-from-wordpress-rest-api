@@ -50,7 +50,7 @@ module.exports = function (gulp, plugins, foo) {
 						siteUrl: "//www.example.com"
 					}
 				},
-				json: ['./app/json/*.json'],
+				json: ['./app/assets/json/*.json'],
 				use: [
 					collections({
 						post: {

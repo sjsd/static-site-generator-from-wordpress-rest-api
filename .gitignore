@@ -64,4 +64,4 @@ build/
 .sublime-gulp.cache
 
 # Json-files
-src/json/
+app/assets/json/.json
