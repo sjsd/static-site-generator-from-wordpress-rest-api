@@ -58,7 +58,6 @@ module.exports = function (gulp, plugins, foo) {
 							reverse: false
 						},
 						pages: {
-							pattern: './page/*.md',
 							sortBy: 'menu-order'
 						}
 					}),

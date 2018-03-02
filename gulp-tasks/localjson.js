@@ -8,9 +8,27 @@ const wpApiUrl = 'https://public-api.wordpress.com/wp/v2/sites/'+wordpressURL;
 
 function writeJsonFilePage(json) {
 	const file = './app/assets/json/page.json';
-	const obj = json;
+	const temp = {};
 
-	jsonfile.writeFile(file, obj, function (err) {
+	for (const key of Object.keys(json)) {
+		temp['page/'+json[key].slug+'.html'] = {
+			id: json[key].id,
+			date: json[key].date,
+			modified: json[key].modified,
+			slug: json[key].slug,
+			status: json[key].publish,
+			type: json[key].type,
+			collection: json[key].type,
+			title: json[key].title.rendered,
+			order: json[key].menu_order,
+			layout: json[key].type+'.hbs',
+			contents: json[key].content.rendered,
+			excerpt: json[key].excerpt.rendered,
+			wordpressURL: wordpressURL
+		};
+	}	
+
+	jsonfile.writeFile(file, temp, function (err) {
 		if (err !== null) {
 			console.log('Error writing local JSON-file:')
 			console.error(err);
