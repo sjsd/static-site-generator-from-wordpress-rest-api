@@ -6,11 +6,12 @@ const plugins = require('gulp-load-plugins')(); // To handle parts of gulpfile.j
 const del = require('del'); // To clean / delete build-folder
 
 // Function for shortcut getting partial gulp task from the ./gulp-tasks -folder
-function getTask(task) {
-    return require('./gulp-tasks/' + task)(gulp, plugins);
+function getTask(task,additionalParam) {
+    return require('./gulp-tasks/' + task)(gulp, plugins, additionalParam);
 }
 
 function defaultTask(done) {
+	console.log("Run `gulp --tasks` to see available tasks");
 	done();
 }
 
@@ -30,6 +31,10 @@ gulp.task('javascript', getTask('javascript'));
 // Build javascript
 gulp.task('html', getTask('metalsmith'));
 
+// Get and create local JSONS
+gulp.task('json-posts', getTask('localjson','posts'));
+gulp.task('json-pages', getTask('localjson','pages'));
+
 // Task in series
 gulp.task('default', defaultTask);
-gulp.task('clean-build', gulp.series('clean', 'sass', 'javascript', 'html'));
+gulp.task('build', gulp.series('clean', 'sass', 'javascript', 'html'));

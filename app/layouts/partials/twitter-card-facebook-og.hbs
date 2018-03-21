@@ -1,0 +1,15 @@
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="{{ site.twitterNick }}" />
+<meta name="twitter:creator" content="{{ site.twitterNick }}" />
+<meta property="og:url" content="{{ site.siteUrl }}/{{ path }}/index.html" />
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:type" content="article" />
+{{# if excerpt }}
+	<meta property="og:description" content="{{{ strip-html excerpt }}}" />
+{{ else }}
+	<meta property="og:description" content="{{ strip-html site.description }}" />
+{{/ if }}
+
+{{# if featured_media_url }}
+	<meta property="og:image" content="{{ featured_media_url }}?w=1200" />
+{{/ if }}
