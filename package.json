@@ -1,6 +1,6 @@
 {
   "name": "static-site-generator-from-wordpress-rest-api",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A setup to build a static site from Wordpress REST API",
   "main": "index.js",
   "scripts": {
