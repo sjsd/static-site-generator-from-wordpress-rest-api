@@ -10,7 +10,7 @@ A setup to create a simple and very fast blog / static site based on a Wordpress
 - Install dependencies: `npm install`
 - Build local JSON for post `gulp json-posts`
 - Build local JSON for pages `gulp json-pages`
-- Run a clean build `gulp clean-build`
+- Run a clean build `gulp build`
 - We're done! Your site is now in the `./build` folder.
 
 ### Some options
